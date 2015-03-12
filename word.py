@@ -6,7 +6,6 @@ Marlies Quekel -
 Supervisor:
 GJ van Noord'''
 
-import re
 
 class word():
     '''

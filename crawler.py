@@ -16,6 +16,9 @@ class crawler():
     '''
 
     def __init__(self):
+        '''
+        Makes an list of all tweets and initializes an list for tweed tweets
+        '''
         pass
 
     def randomCouple(self):
@@ -26,6 +29,6 @@ class crawler():
 
     def giveNext(self, tweet):
         '''
-        return a tweet that ryhmes with given tweet and that is also not been returned yet
+        returns a tweet that ryhmes with given tweet and that is also not been returned yet
         '''
         pass

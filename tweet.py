@@ -25,7 +25,12 @@ class tweet():
         words = text.split(' ')
         self.ryhmeWord = word.word(words[len(words)-1])
         
-
+    def ryhmes(self, tweet):
+        if self.ryhmeWord.phonetic == tweet.ryhmeWord.phonetic:
+            return 1
+        else:
+            return 0
+    
     def __str__(self):
         return "Tweet-object:\nText: '" + self.text + "'\nLength " + str(self.length) + "\nRyhmeWord: '" + str(self.ryhmeWord) + "'"
 

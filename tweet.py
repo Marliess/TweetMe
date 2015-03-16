@@ -34,9 +34,12 @@ class tweet():
     def __str__(self):
         return "Tweet-object:\nText: '" + self.text + "'\nLength " + str(self.length) + "\nRyhmeWord: '" + str(self.ryhmeWord) + "'"
 
-t = open(tweet("woorden.txt"))
+
+t = tweet("@aafkevultink zal nog wel een aantal jaren duren voor nieuwe afspraken")
 print(t)
 
+
+
 """
-t = tweet("@aafkevultink zal nog wel een aantal jaren duren voor nieuwe afspraken")
-print(t)"""
+t = open(tweet("woorden.txt"))
+print(t) """

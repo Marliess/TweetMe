@@ -2,7 +2,7 @@
 Authors:
 Gijs Hendriks - s2410540
 Sil de Graaf -
-Marlies Quekel - 
+Marlies Quekel - s2440571
 
 Supervisor:
 GJ van Noord

@@ -4,44 +4,61 @@ from PyQt4.QtCore import *
 import random
 
 class tweetUI(QtGui.QWidget):
-    """ Docstring """
     def __init__(self, tweet1, tweet2):
-        """ Constructor """
+        """
+        Constructor
+        """
         super(tweetUI, self).__init__()
         self.tweet1 = tweet1
         self.tweet2 = tweet2
         self.initUI()
 
     def initUI(self):
+        """
+        Create labels and buttons to work with
+        """
         self.grid = QtGui.QGridLayout()
         self.tweetLabel = QtGui.QLabel()
         self.twietwietLabel = QtGui.QLabel()
         self.tweetButton = QtGui.QPushButton('Nieuwe tweet', self)
         self.twietwietButton = QtGui.QPushButton('Nieuwe twietwiet', self)
 
+        """
+        Set style and alignment of the text
+        """
         self.tweetLabel.setStyleSheet('font-size: 20pt; font-family: Arial;')
         self.twietwietLabel.setStyleSheet('font-size: 20pt; font-family: Arial;')
         self.tweetLabel.setAlignment(Qt.AlignRight)
         self.twietwietLabel.setAlignment(Qt.AlignRight)
-
+        """
+        Set button size
+        """
         self.tweetButton.setFixedWidth(150)
         self.twietwietButton.setFixedWidth(150)
-
+        """
+        Connect to event handler
+        """
         self.tweetButton.clicked.connect(self.eventHandler)
         self.twietwietButton.clicked.connect(self.eventHandler)
-
+        """
+        Add widget to variabel position
+        """
         self.grid.addWidget(self.tweetLabel, 1, 1)
         self.grid.addWidget(self.twietwietLabel, 2, 1)
         self.grid.addWidget(self.tweetButton, 1, 0)
         self.grid.addWidget(self.twietwietButton, 2, 0)
-
+        """
+        Create window name, set geometry and show the screen
+        """
         self.setWindowTitle("TwieTwiet Generator")
         self.setGeometry(500, 200, 600, 600)
-
         self.setLayout(self.grid)
         self.show()
 
     def eventHandler(self):
+        """
+        Event handler where a new tweet or twietwiet will be selected and displayed
+        """
         source = self.sender()
         if source.text() == "Nieuwe tweet":
             self.tweetLabel.setText(random.choice(self.tweet1))

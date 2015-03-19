@@ -21,7 +21,8 @@ class crawler():
         Makes an list of all tweets and initializes an list for tweed tweets
         '''
         self.tweet = argv[1]        #file that contains all tweets
-        self.listTweets()           #returns a list of all tweets
+        self.listTweets()           #contains a list of all tweets
+        self.randomCouple()
         pass
 
     def listTweets(self):

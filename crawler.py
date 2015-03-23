@@ -18,7 +18,7 @@ class crawler():
 
     def __init__(self,argv):
         '''
-        Makes an list of all tweets and initializes an list for tweed tweets
+        Makes an list of all tweets and initializes an list of tweeted tweets
         '''
         self.tweet = argv[1]        #file that contains all tweets
         self.listTweets()           #contains a list of all tweets

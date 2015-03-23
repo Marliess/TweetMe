@@ -21,19 +21,21 @@ class word():
         for line in lines:
             if self.text == line[1]:
                 self.index = int(line[0])-1
-                self.phonetic = line[3]
+                self.phonetic = line[4]
                 self.valid = 1
+                self.content = line
         ''' Check if word is found '''
         if(self.valid):
-            #print ("Word found in file:")
             #print (lines[self.index])
             pass
         else:
             print('Error: word not found inside dpw.cd')
 
     def __str__(self):
-        return self.text
+        return str(self.content)
         
 
-#w = word('bakbanaan')
-#w2 = word('banaan')
+#word('trottoir')
+#word('kunstenaar')
+#word('klaar')
+#word('reservoir')

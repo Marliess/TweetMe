@@ -29,10 +29,11 @@ class word():
             #print (lines[self.index])
             pass
         else:
-            print('Error: word not found inside dpw.cd')
+            print('Error: word not found inside dpw.cd: {}'.format(self.text))
 
     def __str__(self):
-        return str(self.content)
+        
+        return str(self.text)
         
 
 #word('trottoir')

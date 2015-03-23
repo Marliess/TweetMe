@@ -22,12 +22,15 @@ class tweet():
         #self.user = user
         #self.date = date
         self.length = len(text)
-        words = text.split(' ')
-        ''' Removes empty entrys when tweets end with a space'''
-        words = [x for x in words if x]
+
+        ''' Removes empty entrys when tweets end with a space and/or newline'''
+        words = text.rstrip().split(' ')
+        
         self.ryhmeWord = word.word(words[len(words)-1])
         
     def ryhmes(self, tweet):
+        if not self.ryhmeWord.valid or not tweet.ryhmeWord.valid:
+            return 0
         c1 = self.ryhmeWord.content
         c2 = tweet.ryhmeWord.content
         #First we determine how many letters we need to compare:
@@ -35,8 +38,6 @@ class tweet():
         compareLength  = self.getCompareLength(c1[5])
         r1 = self.ryhmeWord.phonetic
         r2 = tweet.ryhmeWord.phonetic
-        print(r1)
-        print(r2)
         
         for x in range(0, compareLength+1):
             #print(x)
@@ -66,8 +67,14 @@ class tweet():
         return i
     
     def __str__(self):
-        return "Tweet-object:\nText: '" + self.text + "'\nLength " + str(self.length) + "\nRyhmeWord: '" + str(self.ryhmeWord) + "'"
+        return "Tweet-object:\nText: '" + self.text + "'\nLength: " + str(self.length) + "\nRyhmeWord: '" + str(self.ryhmeWord) + "'"
 
+tweets = [line for line in open('tweets.txt', encoding='utf-8-sig')]
+for t1 in tweets:
+    for t2 in tweets:
+        #print(tweet(t1))
+        #print(tweet(t2))
+        print(tweet(t1).ryhmes(tweet(t2)))
 
-print(tweet("blah blakd dlakj aardbeving  ").ryhmes(tweet("omgeving")))
+print(tweet("blah blakd dlakj aardbeving  \n  ").ryhmes(tweet("omgeving")))
 

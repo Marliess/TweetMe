@@ -24,6 +24,7 @@ class word():
                 self.phonetic = line[4]
                 self.valid = 1
                 self.content = line
+
         ''' Check if word is found '''
         if(self.valid):
             #print (lines[self.index])

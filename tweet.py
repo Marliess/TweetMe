@@ -3,7 +3,6 @@ Authors:
 Gijs Hendriks - s2410540
 Sil de Graaf -
 Marlies Quekel - s2440571
-
 Supervisor:
 GJ van Noord
 '''
@@ -22,11 +21,21 @@ class tweet():
         #self.user = user
         #self.date = date
         self.length = len(text)
-
+        self.punc = (".ß!@#$%?http://0123456789^")
         ''' Removes empty entrys when tweets end with a space and/or newline'''
         words = text.rstrip().split(' ')
-        
         self.ryhmeWord = word.word(words[len(words)-1])
+
+        
+        '''When last 'word' is a punctuation, take the 'word' before that'''
+        
+        for i in self.punc:
+            doorlopen = 2
+            if i in self.ryhmeWord: 
+                self.ryhmeWord = word.word(words[len(words)-doorlopen])           # van line[-1] 1 na laatste woord van zin van maken
+                doorlopen = doorlopen+1          
+
+
         
     def ryhmes(self, tweet):
         if not self.ryhmeWord.valid or not tweet.ryhmeWord.valid:
@@ -76,5 +85,4 @@ for t1 in tweets:
         #print(tweet(t2))
         print(tweet(t1).ryhmes(tweet(t2)))
 
-print(tweet("blah blakd dlakj aardbeving  \n  ").ryhmes(tweet("omgeving")))
-
+#print(tweet("blah blakd dlakj aardbeving  \n  ").ryhmes(tweet("omgeving")))

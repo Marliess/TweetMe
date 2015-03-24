@@ -3,6 +3,7 @@ from PyQt4 import QtGui, QtCore
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 import random
+import string
 
 class tweetUI(QtGui.QWidget):
     def __init__(self, tweet1, tweet2):
@@ -25,16 +26,27 @@ class tweetUI(QtGui.QWidget):
         self.tweetButton = QtGui.QPushButton('Nieuwe tweet', self)
         self.twietwietButton = QtGui.QPushButton('Nieuwe twietwiet', self)
         """
-        show a background image
+        Show background image
         """
         self.palette.setBrush(QtGui.QPalette.Background,QBrush(QPixmap("tweetMe.jpg")))     #"twitter.png"
         self.setFixedSize(800,470)       # self.setFixedSize(738,415)
         self.setPalette(self.palette)
+
+        self.punc = ("!") #,"@","RT","?","http://","#",)
+        #self.color = self.punctuation.setStyleSheet('font-size: 19pt; color: red; font-family: Arial;')
+        for line in self.tweet1:
+            print(line)
+            self.tweet1 = line.replace(self.punc,"")
+            print(self.tweet1)
+        for line in self.tweet2:
+            self.tweet2 = line.replace(self.punc,"")
+            print(self.tweet2)
+    
         """
         Set style and alignment of the text
         """
-        self.tweetLabel.setStyleSheet('font-size: 25pt; font-family: Arial;')
-        self.twietwietLabel.setStyleSheet('font-size: 25pt; font-family: Arial;')
+        self.tweetLabel.setStyleSheet('font-size: 20pt; font-family: Arial;')
+        self.twietwietLabel.setStyleSheet('font-size: 20pt; font-family: Arial;')
         self.tweetLabel.setAlignment(Qt.AlignRight)
         self.twietwietLabel.setAlignment(Qt.AlignRight)
         """
@@ -74,8 +86,8 @@ class tweetUI(QtGui.QWidget):
 
 
 if __name__ == '__main__':
-        tweet1 = ['lekker','random','woorden','neerzetten','test']
-        tweet2 = ['testen','of','dit','werkt','haha']
+        tweet1 = ["@RT http://  wat een mooie dag gehad!!!!!!"]
+        tweet2 = ['testen http:// @RT ?! of @dit? werkt http:// @haha ?!']
         app = QtGui.QApplication(sys.argv)
         t = tweetUI(tweet1, tweet2)
         t.show()

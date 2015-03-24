@@ -21,8 +21,7 @@ class crawler():
         '''
         self.prondict()                             # creates a pronunciation dictionary
         self.tweetList()                            # file that contains all usable tweets
-        self.twietwiet()                            # creates a twietwiet from usable tweetList
-
+        self.ttGenerator()                          # creates a twietwiet from usable tweetList
 
     def prondict(self):
         '''
@@ -40,39 +39,42 @@ class crawler():
         '''
         Create a tweetList with all the usable tweets
         '''
-        allTweetList = [line.split() for line in open("tweets.txt", encoding="utf-8-sig")]
+        allTweetList = [line.split() for line in open("tweets.txt")]
         self.tweetList = [tweet for tweet in allTweetList if tweet[-1] in self.prondict]
         return self.tweetList
 
 
-
-
-    def twietwiet(self):
+    def ttGenerator(self):
         tweetdict = {}
         self.twietwiet = []
+        '''
+        A dictionary with the last words, the ryhming words, of tweets
+        '''
         for tweet in self.tweetList:
             key = tweet[-1]
             value = self.prondict.get(key, 'unknown')
             tweetdict[key] = value
+        '''
+        While list is empthy pick a random tweet from the list and compare with another tweet for ryhming
+        '''
         while self.twietwiet == []:
-            tweet1 = random.choice(self.tweetList)
-            tweet2 = random.choice(self.tweetList)
-            tweet1_value = tweetdict.get(tweet1[-1], 'unknown')
-            tweet1_value = tweet1_value.strip("'")
-            tweet2_value = tweetdict.get(tweet2[-1], 'unknown')
-            tweet2_value = tweet2_value.strip("'")
-            """len > 2, anders krijg je twietwiets waarbij ook op ik zou moeten rijmen omdat
-            de value, dus de uitspraak vanaf het 2e teken is genomen"""
-            if len(tweet2_value) > 2 and len(tweet1_value) > 2:
-                if tweet2 != tweet1 and tweet2_value[1:] == tweet1_value[1:] and tweet2_value != tweet1_value:
-                    self.twietwiet.append(tweet1)
-                    self.twietwiet.append(tweet2)
+            tweet = random.choice(self.tweetList)
+            ryhmeTweet = random.choice(self.tweetList)
+            tweet_value = tweetdict.get(tweet[-1], 'unknown')
+            tweet_value = tweet_value.strip("'")
+            ryhmeTweet_value = tweetdict.get(ryhmeTweet[-1], 'unknown')
+            ryhmeTweet_value = ryhmeTweet_value.strip("'")
+            '''
+            The words from tweet and ryhmetweet have to be bigger than 1, because with a word of 1 letter you can't ryhme
+            '''
+            if len(ryhmeTweet_value) > 1 and len(tweet_value) > 1:
+                if ryhmeTweet != tweet and ryhmeTweet_value[1:] == tweet_value[1:] and ryhmeTweet_value != tweet_value:
+                    self.twietwiet.append(tweet)
+                    self.twietwiet.append(ryhmeTweet)
                 else:
-                    tweet2 = random.choice(self.tweetList)
+                    ryhmeTweet = random.choice(self.tweetList)
             else:
-                tweet2 = random.choice(self.tweetList)
-        
-        print(self.twietwiet)
+                ryhmeTweet = random.choice(self.tweetList)
         return self.twietwiet
 
 

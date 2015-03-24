@@ -65,9 +65,9 @@ class crawler():
             ryhmeTweet_value = tweetdict.get(ryhmeTweet[-1], 'unknown')
             ryhmeTweet_value = ryhmeTweet_value.strip("'")
             '''
-            The words from tweet and ryhmetweet have to be bigger than 1, because with a word of 1 letter you can't ryhme
+            The words from tweet and ryhmetweet have to be bigger than 2, because with a word of 2 letters you can't make a good ryhme
             '''
-            if len(ryhmeTweet_value) > 1 and len(tweet_value) > 1:
+            if len(ryhmeTweet_value) > 2 and len(tweet_value) > 2:
                 if ryhmeTweet != tweet and ryhmeTweet_value[1:] == tweet_value[1:] and ryhmeTweet_value != tweet_value:
                     self.twietwiet.append(tweet)
                     self.twietwiet.append(ryhmeTweet)

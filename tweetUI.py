@@ -3,16 +3,16 @@ from PyQt4 import QtGui, QtCore
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 import random
-import string
+import crawler
 
 class tweetUI(QtGui.QWidget):
-    def __init__(self, tweet1, tweet2):
+    def __init__(self, tweet, ryhmeTweet):
         """
         Constructor
         """
         super(tweetUI, self).__init__()
-        self.tweet1 = tweet1
-        self.tweet2 = tweet2
+        self.tweet = tweet
+        self.ryhmeTweet = ryhmeTweet
         self.initUI()
 
     def initUI(self):
@@ -23,49 +23,36 @@ class tweetUI(QtGui.QWidget):
         self.palette = QtGui.QPalette()
         self.tweetLabel = QtGui.QLabel()
         self.twietwietLabel = QtGui.QLabel()
-        self.tweetButton = QtGui.QPushButton('Nieuwe tweet', self)
         self.twietwietButton = QtGui.QPushButton('Nieuwe twietwiet', self)
         """
         Show background image
         """
-        self.palette.setBrush(QtGui.QPalette.Background,QBrush(QPixmap("tweetMe.jpg")))     #"twitter.png"
-        self.setFixedSize(800,470)       # self.setFixedSize(738,415)
+        self.palette.setBrush(QtGui.QPalette.Background,QBrush(QPixmap("tweetMe.jpg")))
+        self.setFixedSize(800,470)       
         self.setPalette(self.palette)
-
-        self.punc = ("!") #,"@","RT","?","http://","#",)
-        #self.color = self.punctuation.setStyleSheet('font-size: 19pt; color: red; font-family: Arial;')
-        for line in self.tweet1:
-            print(line)
-            self.tweet1 = line.replace(self.punc,"")
-            print(self.tweet1)
-        for line in self.tweet2:
-            self.tweet2 = line.replace(self.punc,"")
-            print(self.tweet2)
-    
         """
         Set style and alignment of the text
         """
-        self.tweetLabel.setStyleSheet('font-size: 20pt; font-family: Arial;')
-        self.twietwietLabel.setStyleSheet('font-size: 20pt; font-family: Arial;')
+        self.tweetLabel.setStyleSheet('font-size: 12pt; font-family: Arial;')
+        self.twietwietLabel.setStyleSheet('font-size: 12pt; font-family: Arial;')
         self.tweetLabel.setAlignment(Qt.AlignRight)
         self.twietwietLabel.setAlignment(Qt.AlignRight)
         """
         Set button size
         """
-        self.tweetButton.setFixedWidth(150)
         self.twietwietButton.setFixedWidth(150)
+        self.twietwietButton.move(320,50)
+        self.tweetLabel.move(320,100)
         """
         Connect to event handler
         """
-        self.tweetButton.clicked.connect(self.eventHandler)
         self.twietwietButton.clicked.connect(self.eventHandler)
         """
         Add widget to variabel position
         """
-        self.grid.addWidget(self.tweetLabel, 1, 1)
-        self.grid.addWidget(self.twietwietLabel, 2, 1)
-        self.grid.addWidget(self.tweetButton, 1, 0)
-        self.grid.addWidget(self.twietwietButton, 2, 0)
+        self.grid.addWidget(self.twietwietButton, 9,0)
+        self.grid.addWidget(self.tweetLabel, 7,0)
+        self.grid.addWidget(self.twietwietLabel, 8, 0)
         """
         Create window name, set geometry and show the screen
         """
@@ -79,16 +66,22 @@ class tweetUI(QtGui.QWidget):
         Event handler where a new tweet or twietwiet will be selected and displayed
         """
         source = self.sender()
-        if source.text() == "Nieuwe tweet":
-            self.tweetLabel.setText(random.choice(self.tweet1))
-        else:
-            self.twietwietLabel.setText(random.choice(self.tweet2))
+        self.tweetLabel.clear()
+        self.twietwietLabel.clear()
+        """
+        Convert tweet list to string, so it will be displayed nicely
+        """
+        str1 = ' '.join(self.tweet)
+        str2 = ' '.join(self.ryhmeTweet)
+        self.tweetLabel.setText(str1)
+        self.twietwietLabel.setText(str2)
 
 
 if __name__ == '__main__':
-        tweet1 = ["@RT http://  wat een mooie dag gehad!!!!!!"]
-        tweet2 = ['testen http:// @RT ?! of @dit? werkt http:// @haha ?!']
         app = QtGui.QApplication(sys.argv)
-        t = tweetUI(tweet1, tweet2)
-        t.show()
+        twieTwiet = crawler.crawler()
+        tweet = twieTwiet.twietwiet[0]
+        ryhmeTweet = twieTwiet.twietwiet[1]
+        widget = tweetUI(tweet,ryhmeTweet)
+        widget.show()
         app.exec_()

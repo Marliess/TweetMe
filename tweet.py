@@ -7,6 +7,7 @@ Supervisor:
 GJ van Noord
 '''
 import word
+import string
 
 class tweet():
     '''
@@ -21,19 +22,11 @@ class tweet():
         #self.user = user
         #self.date = date
         self.length = len(text)
-        self.punc = (".ß!@#$%?http://0123456789^")
+        ''' Removes puctuation '''
+        words = ''.join(c for c in self.text if c not in string.punctuation)
         ''' Removes empty entrys when tweets end with a space and/or newline'''
-        words = text.rstrip().split(' ')
+        words = words.rstrip().split(' ')
         self.ryhmeWord = word.word(words[len(words)-1])
-
-        
-        '''When last 'word' is a punctuation, take the 'word' before that'''
-        
-        for i in self.punc:
-            doorlopen = 2
-            if i in self.ryhmeWord: 
-                self.ryhmeWord = word.word(words[len(words)-doorlopen])           # van line[-1] 1 na laatste woord van zin van maken
-                doorlopen = doorlopen+1          
 
 
         
@@ -77,12 +70,12 @@ class tweet():
     
     def __str__(self):
         return "Tweet-object:\nText: '" + self.text + "'\nLength: " + str(self.length) + "\nRyhmeWord: '" + str(self.ryhmeWord) + "'"
-
+'''
 tweets = [line for line in open('tweets.txt', encoding='utf-8-sig')]
 for t1 in tweets:
     for t2 in tweets:
         #print(tweet(t1))
         #print(tweet(t2))
         print(tweet(t1).ryhmes(tweet(t2)))
-
-#print(tweet("blah blakd dlakj aardbeving  \n  ").ryhmes(tweet("omgeving")))
+'''
+#print(tweet("blah blakd dlakj aardbeving   !! \n  ").ryhmes(tweet("omgeving")))

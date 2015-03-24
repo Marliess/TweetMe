@@ -8,43 +8,47 @@ Supervisor:
 GJ van Noord
 '''
 
-import tweet
-import sys
+#import tweet
+#import sys
+import random
 
 class crawler():
     '''
-    A class to 'walk' through all the tweets and compare them
+    A class to 'walk' through all the tweets and compare them and find their twietwiets
     '''
 
-    def __init__(self,argv):
+    def __init__(self):
         '''
-        Makes an list of all tweets and initializes an list of tweeted tweets
+        Constructor
         '''
-        self.tweet = argv[1]        #file that contains all tweets
-        self.listTweets()           #contains a list of all tweets
-        self.randomCouple()
-        pass
+        self.tweet = open("tweets.txt","r")         # opens a textfile with tweets
+        self.prondict()                             # creates a pronunciation dictionary
+        self.tweetList()                            # file that contains all usable tweets
+        self.twietwiet()                            # creates a twietwiet from usable tweetList
+        
 
-    def listTweets(self):
-        '''
-        returns a list of all tweets
-        '''
-        tweets = [line for line in open(self.tweet)]
-        tweetList = "\n".join(tweets)
-        return tweetList
-        pass
 
-    def randomCouple(self):
-        '''
-        returns a tuple of two random ryhming tweets
-        '''
-        pass
+    def prondict(self):
+        pronlist = [line.split('\\') for line in open("dpw.cd")]
+        self.prondict = {}
+        for self.text in pronlist:
+            key = self.text[1]
+            value = self.text[3]
+            self.prondict[key] = value
+        return self.prondict
 
-    def giveNext(self, tweet):
-        '''
-        returns a tweet that ryhmes with given tweet and that is also not been returned yet
-        '''
-        pass
 
-tweetMe = crawler(sys.argv)
+
+    def tweetList(self):
+        self.tweetList = []
+        allTweetList = [line.split() for line in open("tweets.txt")]
+        for tweet in allTweetList:
+            if tweet[-1] in self.prondict:
+                self.tweetList.append(tweet)
+        return self.tweetList
+
+
+
+if __name__ == "__main__":
+    crawler()
 

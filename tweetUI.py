@@ -1,5 +1,6 @@
 import sys
 from PyQt4 import QtGui, QtCore
+from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 import random
 
@@ -18,16 +19,22 @@ class tweetUI(QtGui.QWidget):
         Create labels and buttons to work with
         """
         self.grid = QtGui.QGridLayout()
+        self.palette = QtGui.QPalette()
         self.tweetLabel = QtGui.QLabel()
         self.twietwietLabel = QtGui.QLabel()
         self.tweetButton = QtGui.QPushButton('Nieuwe tweet', self)
         self.twietwietButton = QtGui.QPushButton('Nieuwe twietwiet', self)
-
+        """
+        show a background image
+        """
+        self.palette.setBrush(QtGui.QPalette.Background,QBrush(QPixmap("tweetMe.jpg")))     #"twitter.png"
+        self.setFixedSize(800,470)       # self.setFixedSize(738,415)
+        self.setPalette(self.palette)
         """
         Set style and alignment of the text
         """
-        self.tweetLabel.setStyleSheet('font-size: 20pt; font-family: Arial;')
-        self.twietwietLabel.setStyleSheet('font-size: 20pt; font-family: Arial;')
+        self.tweetLabel.setStyleSheet('font-size: 25pt; font-family: Arial;')
+        self.twietwietLabel.setStyleSheet('font-size: 25pt; font-family: Arial;')
         self.tweetLabel.setAlignment(Qt.AlignRight)
         self.twietwietLabel.setAlignment(Qt.AlignRight)
         """

@@ -19,7 +19,6 @@ class crawler():
         '''
         Constructor
         '''
-        self.tweet = open("tweets.txt","r")         # opens a textfile with tweets
         self.prondict()                             # creates a pronunciation dictionary
         self.tweetList()                            # file that contains all usable tweets
         self.twietwiet()                            # creates a twietwiet from usable tweetList

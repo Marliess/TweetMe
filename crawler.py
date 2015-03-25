@@ -27,7 +27,7 @@ class crawler():
         '''
         A dictionary with words and their phonetic pronunciation
         '''
-        pronlist = [line.split('\\') for line in open("dpw.cd" encoding='utf-8-sig')]
+        pronlist = [line.split('\\') for line in open("dpw.cd", encoding='utf-8-sig')]
         self.prondict = {}
         for self.text in pronlist:
             key = self.text[1]

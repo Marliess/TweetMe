@@ -15,8 +15,13 @@ Aanroep: python twitterbot.py [bestand met rijmende tweets]
 '''
  
 import tweepy, time, sys, crawler
- 
-argfile = str(sys.argv[1])
+
+
+outfile = open("twietwiet.txt","w")
+for line in self.twietwiet:
+        print(line)
+        outfile.write(" ".join(line))
+#argfile = str(sys.argv[1])
  
 
 CONSUMER_KEY = 'UchYJE48vsV4goRWJMno3Frjw'
@@ -27,8 +32,8 @@ auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 api = tweepy.API(auth)
  
-filename=(argfile,'r')
-f=filename.readlines()
+filename = open("twietwiet.txt","r")
+f = filename.readlines()
 filename.close()
  
 for line in f:

@@ -51,16 +51,6 @@ class tweetUI(QtGui.QWidget):
         self.twietwietLabel.setStyleSheet('font-size: 12pt; font-family: Arial;')
         self.tweetLabelRWord.setStyleSheet('font-size: 20pt; font-family: Arial;')
         self.twietwietLabelRWord.setStyleSheet('font-size: 20pt; font-family: Arial;')
-        '''
-        Set alginment for Textlabels
-        '''
-        
-        """
-        Set button size
-        """
-        #self.twietwietButton.setFixedWidth(150)
-        #self.twietwietButton.move(320,50)
-        #self.tweetLabel.move(320,100)
         """
         Connect to event handler
         """
@@ -91,17 +81,7 @@ class tweetUI(QtGui.QWidget):
         Event handler where a new tweet or twietwiet will be selected and displayed
         """
         source = self.sender()
-        '''
-        self.tweetLabel.clear()
-        self.twietwietLabel.clear()
-        """
-        Convert tweet list to string, so it will be displayed nicely
-        """
-        str1 = ' '.join(self.tweet)
-        str2 = ' '.join(self.ryhmeTweet)
-        '''
         tweets = self.crawler.ttGenerator()
-        print(tweets)
         self.tweetLabel.setText(' '.join(tweets[0]))
         self.tweetLabelRWord.setText(tweets[0][-1])
         self.twietwietLabel.setText(' '.join(tweets[1]))

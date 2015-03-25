@@ -14,7 +14,6 @@ class crawler():
     '''
     A class to 'walk' through all the tweets and compare them with a pronunciation dictionary and find their twietwiets
     '''
-
     def __init__(self):
         '''
         A dictionary with words and their phonetic pronunciation

@@ -39,7 +39,7 @@ class crawler():
         '''
         Create a tweetList with all the usable tweets
         '''
-        allTweetList = [line.split() for line in open("tweets.txt")]
+        allTweetList = [line.split() for line in open("tweets.txt", encoding='utf-8-sig')]
         self.tweetList = [tweet for tweet in allTweetList if tweet[-1] in self.prondict]
         return self.tweetList
 
@@ -75,6 +75,8 @@ class crawler():
                     ryhmeTweet = random.choice(self.tweetList)
             else:
                 ryhmeTweet = random.choice(self.tweetList)
+
+        print(self.twietwiet)
         return self.twietwiet
 
 

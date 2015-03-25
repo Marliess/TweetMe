@@ -17,14 +17,6 @@ class crawler():
 
     def __init__(self):
         '''
-        Constructor
-        '''
-        self.prondict()                             # creates a pronunciation dictionary
-        self.tweetList()                            # file that contains all usable tweets
-        self.ttGenerator()                          # creates a twietwiet from usable tweetList
-
-    def prondict(self):
-        '''
         A dictionary with words and their phonetic pronunciation
         '''
         pronlist = [line.split('\\') for line in open("dpw.cd")]
@@ -33,15 +25,12 @@ class crawler():
             key = self.text[1]
             value = self.text[3]
             self.prondict[key] = value
-        return self.prondict
-
-    def tweetList(self):
         '''
         Create a tweetList with all the usable tweets
         '''
         allTweetList = [line.split() for line in open("tweet_corpora.txt")]
         self.tweetList = [tweet for tweet in allTweetList if tweet[-1] in self.prondict]
-        return self.tweetList
+        self.ttGenerator()                          # creates a twietwiet from usable tweetList
 
 
     def ttGenerator(self):
@@ -78,11 +67,6 @@ class crawler():
                     ryhmeTweet = random.choice(self.tweetList)
             else:
                 ryhmeTweet = random.choice(self.tweetList)
-
-        outfile = open("twietwiet.txt","w")
-        for line in self.twietwiet:
-            print(line)
-            outfile.write(" ".join(line))
         return self.twietwiet
 
 

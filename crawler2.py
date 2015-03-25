@@ -25,7 +25,7 @@ class crawler():
             l = line.split('\\')
             #print(l[1], l[4],l[5])
             self.pd[l[1]] = (l[4], l[5])
-        lines = [line for line in open('tweets.txt', encoding='utf-8-sig')]
+        lines = [line for line in open('tweets.txt')]
         for line in lines:
             words = ''.join(c for c in line if c not in string.punctuation)
             words = words.rstrip().split(' ')

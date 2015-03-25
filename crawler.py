@@ -39,21 +39,22 @@ class crawler():
         '''
         Create a tweetList with all the usable tweets
         '''
-        allTweetList = [line.split() for line in open("tweets.txt")]
+        allTweetList = [line.split() for line in open("tweet_corpora.txt")]
         self.tweetList = [self.tweet for self.tweet in allTweetList if self.tweet[-1] in self.prondict]
         return self.tweetList
 
 
     def ttGenerator(self):
-        tweetdict = {}
+        worddict = {}
         twietwiet = []
         '''
         A dictionary with the last words, the ryhming words, of tweets
+        Source: http://stackoverflow.com/questions/8023306/get-key-by-value-in-dictionary for proper dictionary values
         '''
         for self.tweet in self.tweetList:
-            key = self.tweet[-1]
-            value = self.prondict.get(key, 'unknown')
-            tweetdict[key] = value
+            lastword = self.tweet[-1]
+            pron = self.prondict.get(lastword)
+            worddict[lastword] = pron
         '''
         While list is empthy pick a random tweet from the list and compare with another tweet for ryhming
         '''
@@ -61,15 +62,15 @@ class crawler():
             tweet = random.choice(self.tweetList)
             ryhmeTweet = random.choice(self.tweetList)
             
-            tweetValue = tweetdict.get(tweet[-1], 'unknown')
-            tweetValue = tweetValue.strip("'")
-            ryhmeTweetValue = tweetdict.get(ryhmeTweet[-1], 'unknown')
-            ryhmeTweetValue = ryhmeTweetValue.strip("'")
+            tweetWord = worddict.get(tweet[-1])
+            ryhmeTweetWord = worddict.get(ryhmeTweet[-1])
+            tweetWord = tweetWord.strip("'")
+            ryhmeTweetWord = ryhmeTweetWord.strip("'")
             '''
-            The words from tweet and ryhmetweet have to be bigger than 2, because with a word of 2 letters you can't make a good ryhme
+            The words from tweet and ryhmetweet have to be bigger than 2, because with a word of 2 letters you can't make a proper ryhme
             '''
-            if len(tweetValue) > 2 and len(ryhmeTweetValue) > 2:
-                if ryhmeTweetValue[1:] == tweetValue[1:] and ryhmeTweetValue != tweetValue and ryhmeTweet != tweet:
+            if len(tweetWord) > 2 and len(ryhmeTweetWord) > 2:
+                if ryhmeTweetWord[1:] == tweetWord[1:] and ryhmeTweetWord != tweetWord:
                     twietwiet.append(tweet)
                     twietwiet.append(ryhmeTweet)
                 else:

@@ -70,12 +70,13 @@ class tweet():
     
     def __str__(self):
         return "Tweet-object:\nText: '" + self.text + "'\nLength: " + str(self.length) + "\nRyhmeWord: '" + str(self.ryhmeWord) + "'"
-'''
-tweets = [line for line in open('tweets.txt', encoding='utf-8-sig')]
+
+
+tweets = [line for line in open('tweets.txt')]
 for t1 in tweets:
     for t2 in tweets:
         #print(tweet(t1))
         #print(tweet(t2))
         print(tweet(t1).ryhmes(tweet(t2)))
-'''
+
 #print(tweet("blah blakd dlakj aardbeving   !! \n  ").ryhmes(tweet("omgeving")))

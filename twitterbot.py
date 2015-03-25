@@ -10,8 +10,6 @@ Supervisor:
 GJ van Noord
 
 twitteraccount: https://twitter.com/Twiettwiets
-
-Aanroep: python twitterbot.py [bestand met rijmende tweets]
 '''
  
 import tweepy, time, sys, crawler
@@ -41,6 +39,4 @@ while 1:
         api.update_status(status=t2)
         time.sleep(60) # Tweet elke minuut
     
-"""print nu alleen nog de eerste line per status, dit moeten twee per keer worden!"""
-
 """used this tutorial: http://www.dototot.com/how-to-write-a-twitter-bot-with-python-and-tweepy/"""

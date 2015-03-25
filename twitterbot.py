@@ -27,13 +27,13 @@ auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 api = tweepy.API(auth)
  
-filename=argfile,'r')
+filename=(argfile,'r')
 f=filename.readlines()
 filename.close()
  
 for line in f:
     api.update_status(status=line)
-    time.sleep(30) #Tweet elk uur
+    time.sleep(60) # Tweet elke minuut
     
 """print nu alleen nog de eerste line per status, dit moeten twee per keer worden!"""
 

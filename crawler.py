@@ -47,6 +47,7 @@ class crawler():
     def ttGenerator(self):
         worddict = {}
         self.twietwiet = []
+
         '''
         A dictionary with the last words, the ryhming words, of tweets
         Source: http://stackoverflow.com/questions/8023306/get-key-by-value-in-dictionary for proper dictionary values
@@ -78,7 +79,10 @@ class crawler():
             else:
                 ryhmeTweet = random.choice(self.tweetList)
 
-        print(self.twietwiet)
+        outfile = open("twietwiet.txt","w")
+        for line in self.twietwiet:
+            print(line)
+            outfile.write(" ".join(line))
         return self.twietwiet
 
 

@@ -60,12 +60,10 @@ class crawler():
             '''
             if len(tweetWord) > 2 and len(ryhmeTweetWord) > 2:
                 if ryhmeTweetWord[1:] == tweetWord[1:] and ryhmeTweetWord != tweetWord:
-                    self.twietwiet.append(tweet)
-                    self.twietwiet.append(ryhmeTweet)
-                else:
-                    ryhmeTweet = random.choice(self.tweetList)
-            else:
-                ryhmeTweet = random.choice(self.tweetList)
+                    if -5 < len(tweet) - len(ryhmeTweet) < 5:
+                        self.twietwiet.append(tweet)
+                        self.twietwiet.append(ryhmeTweet)
+            ryhmeTweet = random.choice(self.tweetList)
         return self.twietwiet
 
 

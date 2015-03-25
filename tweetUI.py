@@ -1,3 +1,13 @@
+'''
+Authors:
+Gijs Hendriks - s2410540
+Sil de Graaf -
+Marlies Quekel - s2440571
+
+Supervisor:
+GJ van Noord
+'''
+
 import sys
 from PyQt4 import QtGui, QtCore
 from PyQt4.QtGui import *

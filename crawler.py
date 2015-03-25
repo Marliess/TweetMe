@@ -27,7 +27,7 @@ class crawler():
         '''
         A dictionary with words and their phonetic pronunciation
         '''
-        pronlist = [line.split('\\') for line in open("dpw.cd", encoding='utf-8-sig')]
+        pronlist = [line.split('\\') for line in open("dpw.cd")]
         self.prondict = {}
         for self.text in pronlist:
             key = self.text[1]
@@ -40,13 +40,13 @@ class crawler():
         Create a tweetList with all the usable tweets
         '''
         allTweetList = [line.split() for line in open("tweet_corpora.txt")]
-        self.tweetList = [self.tweet for self.tweet in allTweetList if self.tweet[-1] in self.prondict]
+        self.tweetList = [tweet for tweet in allTweetList if tweet[-1] in self.prondict]
         return self.tweetList
 
 
     def ttGenerator(self):
         worddict = {}
-        twietwiet = []
+        self.twietwiet = []
         '''
         A dictionary with the last words, the ryhming words, of tweets
         Source: http://stackoverflow.com/questions/8023306/get-key-by-value-in-dictionary for proper dictionary values
@@ -58,7 +58,7 @@ class crawler():
         '''
         While list is empthy pick a random tweet from the list and compare with another tweet for ryhming
         '''
-        while twietwiet == []:
+        while self.twietwiet == []:
             tweet = random.choice(self.tweetList)
             ryhmeTweet = random.choice(self.tweetList)
             
@@ -71,15 +71,15 @@ class crawler():
             '''
             if len(tweetWord) > 2 and len(ryhmeTweetWord) > 2:
                 if ryhmeTweetWord[1:] == tweetWord[1:] and ryhmeTweetWord != tweetWord:
-                    twietwiet.append(tweet)
-                    twietwiet.append(ryhmeTweet)
+                    self.twietwiet.append(tweet)
+                    self.twietwiet.append(ryhmeTweet)
                 else:
                     ryhmeTweet = random.choice(self.tweetList)
             else:
                 ryhmeTweet = random.choice(self.tweetList)
 
-        print(twietwiet)
-        return twietwiet
+        print(self.twietwiet)
+        return self.twietwiet
 
 
 if __name__ == "__main__":

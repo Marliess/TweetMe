@@ -39,7 +39,7 @@ class crawler():
         '''
         Create a tweetList with all the usable tweets
         '''
-        allTweetList = [line.split() for line in open("tweets.txt", encoding='utf-8-sig')]
+        allTweetList = [line.split() for line in open("tweets.txt")]
         self.tweetList = [tweet for tweet in allTweetList if tweet[-1] in self.prondict]
         return self.tweetList
 
@@ -60,15 +60,15 @@ class crawler():
         while self.twietwiet == []:
             tweet = random.choice(self.tweetList)
             ryhmeTweet = random.choice(self.tweetList)
-            tweet_value = tweetdict.get(tweet[-1], 'unknown')
-            tweet_value = tweet_value.strip("'")
-            ryhmeTweet_value = tweetdict.get(ryhmeTweet[-1], 'unknown')
-            ryhmeTweet_value = ryhmeTweet_value.strip("'")
+            tweetValue = tweetdict.get(tweet[-1], 'unknown')
+            tweetValue = tweetValue.strip("'")
+            ryhmeTweetValue = tweetdict.get(ryhmeTweet[-1], 'unknown')
+            ryhmeTweetValue = ryhmeTweetValue.strip("'")
             '''
             The words from tweet and ryhmetweet have to be bigger than 2, because with a word of 2 letters you can't make a good ryhme
             '''
-            if len(ryhmeTweet_value) > 2 and len(tweet_value) > 2:
-                if ryhmeTweet != tweet and ryhmeTweet_value[1:] == tweet_value[1:] and ryhmeTweet_value != tweet_value:
+            if len(ryhmeTweetValue) > 2 and len(tweetValue) > 2:
+                if ryhmeTweet != tweet and ryhmeTweetValue[1:] == tweetValue[1:] and ryhmeTweetValue != tweetValue:
                     self.twietwiet.append(tweet)
                     self.twietwiet.append(ryhmeTweet)
                 else:

@@ -26,12 +26,15 @@ class tweetUI(QtGui.QWidget):
         self.twietwietButton = QtGui.QPushButton('Nieuwe twietwiet', self)
         """
         Show background image
+        Source: http://stackoverflow.com/questions/26217977/pyqt4-py3-cant-display-image-in-qframe-background
         """
         self.palette.setBrush(QtGui.QPalette.Background,QBrush(QPixmap("tweetMe.jpg")))
         self.setFixedSize(800,470)       
         self.setPalette(self.palette)
         """
         Set style and alignment of the text
+        Source: http://pyqt.sourceforge.net/Docs/PyQt4/qapplication.html for setStylesheet
+        Source: http://pyqt.sourceforge.net/Docs/PyQt4/qt-alignment.html for Alignment
         """
         self.tweetLabel.setStyleSheet('font-size: 12pt; font-family: Arial;')
         self.twietwietLabel.setStyleSheet('font-size: 12pt; font-family: Arial;')

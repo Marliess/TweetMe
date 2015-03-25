@@ -6,7 +6,7 @@ Marlies Quekel - s2440571
 Supervisor:
 GJ van Noord
 '''
-import word
+
 import string
 
 class tweet():
@@ -14,38 +14,38 @@ class tweet():
     A class to represent a tweet
     '''
 
-    def __init__(self, text):
+    def __init__(self, text, phonetic):
         '''
         Initializes the tweet
         '''
         self.text = text
         #self.user = user
         #self.date = date
-        self.length = len(text)
-        ''' Removes puctuation '''
-        words = ''.join(c for c in self.text if c not in string.punctuation)
-        ''' Removes empty entrys when tweets end with a space and/or newline'''
-        words = words.rstrip().split(' ')
-        self.ryhmeWord = word.word(words[len(words)-1])
+        #self.length = len(text)
+
+        
+        #''' Removes puctuation '''
+        #words = ''.join(c for c in self.text if c not in string.punctuation)
+        #''' Removes empty entrys when tweets end with a space and/or newline'''
+        #words = words.rstrip().split(' ')
+        self.phonetic = phonetic
 
 
         
     def ryhmes(self, tweet):
-        if not self.ryhmeWord.valid or not tweet.ryhmeWord.valid:
+        if (self.phonetic == tweet.phonetic):
             return 0
-        c1 = self.ryhmeWord.content
-        c2 = tweet.ryhmeWord.content
+
+        
         #First we determine how many letters we need to compare:
         #the last sequence of vowels and consonants
-        compareLength  = self.getCompareLength(c1[5])
-        r1 = self.ryhmeWord.phonetic
-        r2 = tweet.ryhmeWord.phonetic
+        compareLength  = self.getCompareLength(self.phonetic[1])
+        r1 = self.phonetic[0]
+        r2 = tweet.phonetic[0]
         
-        for x in range(0, compareLength+1):
-            #print(x)
-            #print (r1[len(r1)-1-x])
-            #print (r2[len(r2)-1-x])
-            if r1[len(r1)-1-x] != r2[len(r2)-1-x]:
+        for x in range(1, compareLength+1):
+            #print (x, r1[len(r1) - x], r2[len(r2) - x])
+            if r1[len(r1) - x] != r2[len(r2) - x]:
                 ryhme = 0
                 return 0
         return 1
@@ -63,20 +63,18 @@ class tweet():
                 vowelsHaveBeen = 1
             elif c == "C" and vowelsHaveBeen == 1:
                 break
+            elif c == "C":
+                i += 1
         
         #print(string[-i:])
         
         return i
     
     def __str__(self):
-        return "Tweet-object:\nText: '" + self.text + "'\nLength: " + str(self.length) + "\nRyhmeWord: '" + str(self.ryhmeWord) + "'"
+        return "Tweet-object:\nText: '" + self.text + "\nRyhmeWord: '" + str(self.phonetic) + "'"
 
 
-tweets = [line for line in open('tweets.txt')]
-for t1 in tweets:
-    for t2 in tweets:
-        #print(tweet(t1))
-        #print(tweet(t2))
-        print(tweet(t1).ryhmes(tweet(t2)))
-
-#print(tweet("blah blakd dlakj aardbeving   !! \n  ").ryhmes(tweet("omgeving")))
+#t = tweet('ksksl aanminnigst',('[a:n][mI[n]@xst]', '[VVC][CV[C]VCCC]\n'))
+#print(t)
+#print(t.getCompareLength('[VVC][CV[C]VCCC]'))
+#print(t.ryhmes(tweet('minnigstdafdsfd', ('[n][mI[n]@xst]', '[VVC][CV[C]VCCC]\n'))))

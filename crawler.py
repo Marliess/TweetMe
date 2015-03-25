@@ -51,8 +51,8 @@ class crawler():
         A dictionary with the last words, the ryhming words, of tweets
         Source: http://stackoverflow.com/questions/8023306/get-key-by-value-in-dictionary for proper dictionary values
         '''
-        for self.tweet in self.tweetList:
-            lastword = self.tweet[-1]
+        for tweet in self.tweetList:
+            lastword = tweet[-1]
             pron = self.prondict.get(lastword)
             worddict[lastword] = pron
         '''

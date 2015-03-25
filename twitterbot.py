@@ -16,11 +16,6 @@ Aanroep: python twitterbot.py [bestand met rijmende tweets]
  
 import tweepy, time, sys, crawler
 
-
-outfile = open("twietwiet.txt","w")
-for line in self.twietwiet:
-        print(line)
-        outfile.write(" ".join(line))
 #argfile = str(sys.argv[1])
  
 
@@ -31,14 +26,20 @@ ACCESS_SECRET = 'RiuNzKOU4oPkaxP2TAjlGPNlxuKnLWLMXEDvcFrFJOb5I'
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 api = tweepy.API(auth)
- 
-filename = open("twietwiet.txt","r")
-f = filename.readlines()
-filename.close()
- 
-for line in f:
-    api.update_status(status=line)
-    time.sleep(60) # Tweet elke minuut
+
+c = crawler.crawler()
+while 1:
+    tweets = c.ttGenerator()
+    print(tweets)
+    t1 = ' '.join(tweets[0])
+    t2 = ' '.join(tweets[1])
+    if len(t1) <= 128 and len(t2) <= 128:
+        t1 = t1 + ' #Twiettwiet'
+        t2 = t2 + ' #Twiettwiet'
+        api.update_status(status=t1)
+        time.sleep(1)
+        api.update_status(status=t2)
+        time.sleep(60) # Tweet elke minuut
     
 """print nu alleen nog de eerste line per status, dit moeten twee per keer worden!"""
 

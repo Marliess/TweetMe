@@ -43,7 +43,7 @@ class tweet():
         r1 = self.phonetic[0]
         r2 = tweet.phonetic[0]
         
-        for x in range(1, compareLength+1):
+        for x in range(1, compareLength):
             #print (x, r1[len(r1) - x], r2[len(r2) - x])
             if r1[len(r1) - x] != r2[len(r2) - x]:
                 ryhme = 0

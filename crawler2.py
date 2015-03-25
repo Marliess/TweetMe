@@ -8,7 +8,7 @@ Supervisor:
 GJ van Noord
 '''
 
-import random
+import random as r
 import tweet as t
 import string
 
@@ -29,13 +29,20 @@ class crawler():
         for line in lines:
             words = ''.join(c for c in line if c not in string.punctuation)
             words = words.rstrip().split(' ')
+            words = [x for x in words if x]
             if words[-1] in self.pd:
                 self.tweets.append(t.tweet(line, self.pd[words[-1]]))
-        print(self.tweets)
+                
     def randomCouple(self):
-        pass
+        while 1:
+            t1 = r.choice(self.tweets)
+            t2 = r.choice(self.tweets)
+            if t1.ryhmes(t2):
+                print(t1, t2)
+                break
+        
 
     def giveNext(self, tweet):
         pass
 
-crawler()
+crawler().randomCouple()

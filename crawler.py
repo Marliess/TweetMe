@@ -1,7 +1,7 @@
 '''
 Authors:
 Gijs Hendriks - s2410540
-Sil de Graaf -
+Sil de Graaf - s2615703
 Marlies Quekel - s2440571
 
 Supervisor:
